@@ -1,0 +1,188 @@
+/* ==========================================================================
+   BOOT — secuencia de inicio (nellcstudio.exe)
+   Solo visible si <html> tiene .boot-active (lo decide el script del <head>)
+   ========================================================================== */
+.boot { display: none; }
+
+.boot-active { overflow: hidden; }
+
+.boot-active .boot {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: #000;
+  padding: max(0.75rem, env(safe-area-inset-top)) max(0.75rem, env(safe-area-inset-right))
+    max(0.75rem, env(safe-area-inset-bottom)) max(0.75rem, env(safe-area-inset-left));
+  transition: opacity 0.28s ease-out;
+}
+.boot.is-leaving { opacity: 0; pointer-events: none; }
+
+/* Ventana de terminal */
+.boot__window {
+  position: relative;
+  width: min(100%, 44rem);
+  height: min(82svh, 34rem);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--line-2);
+  will-change: transform;
+  transform: scale(var(--s, 1));
+  transition: transform 0.62s var(--ease-io), border-color 0.3s;
+}
+
+.boot__titlebar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 2.25rem;
+  padding: 0 0.85rem;
+  border-bottom: 1px solid var(--line);
+  font: 500 var(--fs-mono-xs) var(--font-mono);
+  letter-spacing: 0.06em;
+  color: var(--fg-3);
+}
+.boot__dots { display: flex; gap: 0.35rem; }
+.boot__dots i { width: 0.5rem; height: 0.5rem; border: 1px solid var(--line-2); }
+.boot__dots i:first-child { background: var(--pink); border-color: var(--pink); }
+.boot__title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.boot__screen {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* el texto crece hacia arriba, como una terminal */
+  overflow: hidden;
+  padding: 1rem 1rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 0.62rem + 0.5vw, 0.875rem);
+  line-height: 1.55;
+  color: var(--fg-2);
+  transition: opacity 0.16s ease-out;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 2.2rem);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 2.2rem);
+}
+
+.boot__log { display: flex; flex-direction: column; }
+
+.boot__line {
+  display: block;
+  min-height: 1.55em;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.boot__line--gap { min-height: 0.8em; }
+.boot__line .k { color: var(--fg-3); }
+.boot__line .v { color: var(--fg); }
+.boot__line .arrow { color: var(--pink); }
+.boot__line .ok {
+  float: right;
+  color: var(--orange);
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  animation: bootOk 0.2s 0.02s forwards;
+}
+@keyframes bootOk { to { opacity: 1; } }
+
+.boot__line--brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 1rem + 2vw, 2.1rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--fg);
+}
+.boot__line .reg { color: var(--pink); font-size: 0.5em; vertical-align: top; margin-left: 0.1em; position: relative; top: 0.15em; }
+.boot__line--version { color: var(--orange); letter-spacing: 0.08em; }
+.boot__line--exec .v { color: var(--pink); }
+
+/* Barra de progreso (bloques) */
+.boot__progress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.7rem;
+}
+.boot__bar {
+  position: relative;
+  flex: 1;
+  height: 0.55rem;
+  overflow: hidden;
+  background: #222;
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 7px, transparent 7px 9px);
+  mask-image: repeating-linear-gradient(90deg, #000 0 7px, transparent 7px 9px);
+}
+.boot__fill {
+  position: absolute;
+  inset: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--pink), var(--orange));
+}
+.boot__pct { min-width: 3.2ch; text-align: right; color: var(--fg); font-variant-numeric: tabular-nums; }
+
+/* Barra de estado inferior */
+.boot__status {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0.85rem;
+  border-top: 1px solid var(--line);
+  font: 500 var(--fs-mono-xs) var(--font-mono);
+  letter-spacing: 0.06em;
+  color: var(--fg-3);
+  transition: opacity 0.16s ease-out;
+}
+.boot__phase b { color: var(--pink); font-weight: 500; }
+
+/* Skip */
+.boot__skip {
+  position: absolute;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  min-height: var(--tap);
+  padding: 0 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid var(--line-2);
+  background: rgba(16, 16, 16, 0.85);
+  font: 500 var(--fs-mono-sm) var(--font-mono);
+  letter-spacing: 0.08em;
+  color: var(--fg-2);
+  transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast), transform var(--t-fast);
+}
+.boot__skip kbd { font: inherit; color: var(--fg-3); border: 1px solid var(--line-2); padding: 0 0.3rem; }
+.boot__skip:hover { color: #101010; background: var(--pink); border-color: var(--pink); }
+.boot__skip:hover kbd { color: #101010; border-color: #101010; }
+.boot__skip:active { transform: scale(0.97); }
+
+/* ---------- Transición: glitch sutil + expansión ---------- */
+.boot.is-glitch .boot__screen { text-shadow: -2px 0 var(--pink), 2px 0 var(--orange); }
+.boot.is-glitch .boot__window { animation: bootGlitch 0.22s steps(1) both; border-color: var(--pink); }
+
+@keyframes bootGlitch {
+  0%   { transform: translate(0, 0); clip-path: inset(0 0 0 0); }
+  20%  { transform: translate(-4px, 0); clip-path: inset(12% 0 62% 0); }
+  40%  { transform: translate(3px, 0);  clip-path: inset(58% 0 14% 0); }
+  60%  { transform: translate(-2px, 1px); clip-path: inset(0 0 0 0); }
+  80%  { transform: translate(2px, 0);  clip-path: inset(34% 0 40% 0); }
+  100% { transform: translate(0, 0); clip-path: inset(0 0 0 0); }
+}
+
+.boot.is-expanding .boot__screen,
+.boot.is-expanding .boot__status,
+.boot.is-expanding .boot__titlebar { opacity: 0; }
+.boot.is-expanding .boot__skip { opacity: 0; pointer-events: none; }
+.boot.is-expanding .boot__window { border-color: transparent; }
+
+.boot.is-leaving-fast { opacity: 0; transition-duration: 0.2s; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .boot-active .boot { display: none; }
+}

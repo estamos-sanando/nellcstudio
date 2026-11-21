@@ -1,0 +1,35 @@
+/* ==========================================================================
+   FONTS — Nellcstudio®
+   Los archivos tipográficos no están en el repo (licencias). Para activarlos:
+   1. Copiá los .woff2 a /fonts  (ver fonts/README.md)
+   2. Descomentá las líneas url(...) correspondientes.
+   Mientras tanto se usan fuentes instaladas en el dispositivo + fallbacks.
+   ========================================================================== */
+
+/* CY Grotesk STD — titulares (licencia comercial: usar solo con licencia propia) */
+@font-face {
+  font-family: "CY Grotesk STD";
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+  src: local("CY Grotesk STD"), local("CYGroteskSTD");
+  /* src: local("CY Grotesk STD"), url("../fonts/CYGroteskSTD-Regular.woff2") format("woff2"); */
+}
+@font-face {
+  font-family: "CY Grotesk STD";
+  font-weight: 600 800;
+  font-style: normal;
+  font-display: swap;
+  src: local("CY Grotesk STD Bold"), local("CYGroteskSTD-Bold");
+  /* src: local("CY Grotesk STD Bold"), url("../fonts/CYGroteskSTD-Bold.woff2") format("woff2"); */
+}
+
+/* Inter — textos (SIL OFL 1.1, se puede self-hostear libremente) */
+@font-face {
+  font-family: "Inter";
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: local("Inter"), local("Inter Variable");
+  /* src: local("Inter"), url("../fonts/InterVariable.woff2") format("woff2"); */
+}

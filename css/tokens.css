@@ -1,0 +1,49 @@
+/* ==========================================================================
+   TOKENS — Nellcstudio®
+   ========================================================================== */
+:root {
+  /* Color */
+  --bg: #101010;
+  --bg-1: #151515;
+  --bg-2: #1b1b1b;
+  --line: #2a2a2a;
+  --line-2: #3b3b3b;
+  --fg: #f3f3f3;
+  --fg-2: #bdbdbd;
+  --fg-3: #8e8e8e; /* 5.7:1 sobre --bg */
+  --pink: #ff62b4;
+  --orange: #ff6500;
+
+  /* Type */
+  --font-display: "CY Grotesk STD", "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", "SF Mono", "JetBrains Mono", Consolas, Menlo, "Liberation Mono", monospace;
+
+  --fs-mono-xs: 0.6875rem; /* 11 */
+  --fs-mono-sm: 0.75rem; /* 12 */
+  --fs-mono: 0.8125rem; /* 13 */
+  --fs-body: 1rem;
+  --fs-lead: clamp(1.0625rem, 0.95rem + 0.6vw, 1.375rem);
+  --fs-h1: clamp(2.35rem, 1.2rem + 6.4vw, 6rem);
+  --fs-h2: clamp(2.25rem, 1.4rem + 4.6vw, 4.75rem);
+  --fs-h3: clamp(1.25rem, 1rem + 1.2vw, 2rem);
+
+  /* Layout */
+  --gutter: clamp(1rem, 0.4rem + 3.2vw, 3rem);
+  --maxw: 1240px;
+  --nav-h: 3.5rem;
+  --section-y: clamp(4.5rem, 3rem + 8vw, 9.5rem);
+  --tap: 2.75rem; /* 44px */
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-io: cubic-bezier(0.7, 0, 0.2, 1);
+  --t-fast: 0.18s;
+  --t-med: 0.45s;
+}
+
+@media (min-width: 48em) {
+  :root {
+    --nav-h: 3.25rem;
+  }
+}
