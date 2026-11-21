@@ -137,42 +137,44 @@
   /* ---------- guion ---------- */
   async function scriptFull() {
     setPhase("01/03", "SYSTEM INITIALIZATION");
-    await say([{ t: "NELLCSTUDIO" }, { t: "®", c: "reg" }], { cls: "boot__line--brand", speed: 26, after: 60 });
-    await say("CREATIVE SYSTEM v1.0", { cls: "boot__line--version", speed: 9, after: 30 });
+    await say([{ t: "NELLCSTUDIO" }, { t: "®", c: "reg" }], { cls: "boot__line--brand", speed: 30, after: 140 });
+    await say("CREATIVE SYSTEM v1.0", { cls: "boot__line--version", speed: 14, after: 100 });
+    await gap(50);
+    await say([{ t: "> ", c: "arrow" }, { t: "BIENVENIDA/O A NELLCSTUDIO®", c: "v" }], { cls: "boot__line--welcome", speed: 16, after: 220 });
     await gap(40);
-    await say("Initializing creative environment...", { ok: true });
-    await say("Loading visual identity...", { ok: true });
-    await say("Loading narrative modules...", { ok: true });
-    await say("Loading interactive experiences...", { ok: true, after: 90 });
+    await say("Initializing creative environment...", { speed: 12, ok: true, after: 130 });
+    await say("Loading visual identity...", { speed: 12, ok: true, after: 130 });
+    await say("Loading narrative modules...", { speed: 12, ok: true, after: 130 });
+    await say("Loading interactive experiences...", { speed: 12, ok: true, after: 220 });
 
-    await gap(30);
+    await gap(50);
     setPhase("02/03", "USER IDENTIFICATION");
-    await say([{ t: "USER: ", c: "k" }, { t: "ANTONELLA COSTA", c: "v" }]);
-    await say([{ t: "ROLE: ", c: "k" }, { t: "CREATIVE DIRECTOR", c: "v" }]);
-    await say([{ t: "LOCATION: ", c: "k" }, { t: "BUENOS AIRES, ARGENTINA", c: "v" }], { after: 40 });
-    await gap(30);
-    await say([{ t: "SPECIALIZATION:", c: "k" }]);
-    await say([{ t: "> ", c: "arrow" }, { t: "DIGITAL LUDONARRATIVES", c: "v" }]);
-    await say([{ t: "> ", c: "arrow" }, { t: "CONTENT PRODUCTION", c: "v" }], { after: 90 });
+    await say([{ t: "USER: ", c: "k" }, { t: "ANTONELLA COSTA", c: "v" }], { speed: 14, after: 110 });
+    await say([{ t: "ROLE: ", c: "k" }, { t: "CREATIVE DIRECTOR", c: "v" }], { speed: 14, after: 110 });
+    await say([{ t: "LOCATION: ", c: "k" }, { t: "BUENOS AIRES, ARGENTINA", c: "v" }], { speed: 14, after: 130 });
+    await gap(50);
+    await say([{ t: "SPECIALIZATION:", c: "k" }], { speed: 14, after: 90 });
+    await say([{ t: "> ", c: "arrow" }, { t: "DIGITAL LUDONARRATIVES", c: "v" }], { speed: 14, after: 110 });
+    await say([{ t: "> ", c: "arrow" }, { t: "CONTENT PRODUCTION", c: "v" }], { speed: 14, after: 200 });
 
-    await gap(30);
+    await gap(50);
     setPhase("03/03", "EXECUTION");
-    await say("All systems ready.", { cls: "boot__line--ready", after: 50 });
-    await gap(30);
-    await say([{ t: "Executing " }, { t: "nellcstudio.exe", c: "v" }, { t: "..." }], { cls: "boot__line--exec", speed: 12, after: 60 });
-    await progress(800);
-    await sleep(100);
+    await say("All systems ready.", { cls: "boot__line--ready", speed: 14, after: 120 });
+    await gap(40);
+    await say([{ t: "Executing " }, { t: "nellcstudio.exe", c: "v" }, { t: "..." }], { cls: "boot__line--exec", speed: 16, after: 140 });
+    await progress(1500);
+    await sleep(220);
   }
 
   async function scriptFast() {
     setPhase("01/01", "SESSION RESTORED");
-    await say([{ t: "NELLCSTUDIO" }, { t: "®", c: "reg" }], { cls: "boot__line--brand", speed: 14, after: 30 });
-    await say("CREATIVE SYSTEM v1.0", { cls: "boot__line--version", speed: 6, after: 20 });
-    await gap(30);
-    await say("Cached environment found. Welcome back.", { speed: 4, after: 40 });
-    await say([{ t: "Executing " }, { t: "nellcstudio.exe", c: "v" }, { t: "..." }], { cls: "boot__line--exec", speed: 6, after: 40 });
-    await progress(500);
-    await sleep(80);
+    await say([{ t: "NELLCSTUDIO" }, { t: "®", c: "reg" }], { cls: "boot__line--brand", speed: 20, after: 60 });
+    await say("CREATIVE SYSTEM v1.0", { cls: "boot__line--version", speed: 10, after: 40 });
+    await gap(40);
+    await say([{ t: "> ", c: "arrow" }, { t: "¡Bienvenida/o de nuevo! / Welcome back.", c: "v" }], { cls: "boot__line--welcome", speed: 12, after: 100 });
+    await say([{ t: "Executing " }, { t: "nellcstudio.exe", c: "v" }, { t: "..." }], { cls: "boot__line--exec", speed: 10, after: 60 });
+    await progress(800);
+    await sleep(120);
   }
 
   /* ---------- cierre ---------- */

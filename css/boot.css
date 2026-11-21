@@ -99,6 +99,8 @@
 }
 .boot__line .reg { color: var(--pink); font-size: 0.5em; vertical-align: top; margin-left: 0.1em; position: relative; top: 0.15em; }
 .boot__line--version { color: var(--orange); letter-spacing: 0.08em; }
+.boot__line--welcome { color: var(--pink); letter-spacing: 0.04em; }
+.boot__line--welcome .v { color: var(--fg); font-weight: 600; }
 .boot__line--exec .v { color: var(--pink); }
 
 /* Barra de progreso (bloques) */
